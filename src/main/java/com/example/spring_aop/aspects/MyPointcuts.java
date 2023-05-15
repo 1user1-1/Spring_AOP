@@ -4,7 +4,7 @@ import org.aspectj.lang.annotation.Pointcut;
 
 public class MyPointcuts {
 
-    @Pointcut("execution(* com.example.spring_aop..*.get*(..))")
-    public void allGetMethods() {
+    @Pointcut("execution(* com.example.spring_aop..*.abc*(..))")
+    public void allAddMethods() {
     }
 }
