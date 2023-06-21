@@ -3,7 +3,7 @@ package hibernate_test_2.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "deetails")
+@Table(name = "details")
 public class Detail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,17 +12,29 @@ public class Detail {
     @Column(name = "city")
     private String city;
     @Column(name = "phone_number")
-    private String phineNumber;
+    private String phoneNumber;
     @Column(name = "email")
     private String email;
 
-    public Detail(String city, String phineNumber, String email) {
+    @OneToOne(mappedBy = "empDetail",
+    cascade = {CascadeType.PERSIST, CascadeType.REFRESH} )
+    private Employee employee;
+
+    public Detail(String city, String phoneNumber, String email) {
         this.city = city;
-        this.phineNumber = phineNumber;
+        this.phoneNumber = phoneNumber;
         this.email = email;
     }
 
     public Detail() {
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public int getId() {
@@ -42,12 +54,12 @@ public class Detail {
         this.city = city;
     }
 
-    public String getPhineNumber() {
-        return phineNumber;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhineNumber(String phineNumber) {
-        this.phineNumber = phineNumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {
@@ -63,7 +75,7 @@ public class Detail {
         return "Detail{" +
                 "id=" + id +
                 ", city='" + city + '\'' +
-                ", phineNumber='" + phineNumber + '\'' +
+                ", phineNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
                 '}';
     }
